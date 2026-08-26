@@ -45,6 +45,7 @@ Here are the notes covering Docker concepts discussed up to the current timestam
 
 
 <img width="1069" height="754" alt="image" src="https://github.com/user-attachments/assets/4fd08636-8afe-4941-8e97-a16037934a59" />
+<img width="923" height="515" alt="image" src="https://github.com/user-attachments/assets/ac637116-596b-4e44-b74f-0b2a37b2a58a" />
 
 <img width="1343" height="736" alt="image" src="https://github.com/user-attachments/assets/c926e1b1-0684-4ada-8c47-ffed494a5190" />
 
