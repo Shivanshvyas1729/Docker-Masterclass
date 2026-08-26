@@ -1,5 +1,30 @@
 # YT-MLOPS-Docker-Masterclass
 
+Here are the notes covering Docker concepts discussed up to the current timestamp (32:38):
+
+### **Why Docker?**
+* **Problem:** Applications often run correctly on a developer's machine but fail in testing or production environments due to different dependencies, operating systems, or versions ("It works on my machine").
+* **Solution:** Docker encapsulates the application code, its runtime, system tools, libraries, and dependencies into a portable "package" (container), ensuring consistent behavior across any system (13:22 - 14:35).
+
+### **Key Docker Benefits**
+* **Portability:** Apps run identically on a laptop, physical server, or cloud server (19:05).
+* **Isolation:** Multiple applications can run on the same server without interfering with each other's dependencies (19:25).
+* **Scalability:** Enables spinning up or removing containers dynamically based on traffic loads to save resources (21:58).
+
+### **Docker vs. Virtual Machines (VMs)**
+* **VMs:** Require a full guest operating system for each application, which is heavy and slow (27:13).
+* **Docker:** Lighter and faster as it uses containerization, sharing the host OS kernel instead of virtualizing the entire OS (31:54).
+
+### **Docker Engine**
+* The **Docker Engine** is the core software that manages Docker objects such as containers, images, and networks (1:27:37).
+* It consists of three main layers:
+    1. **Docker Daemon:** Listens for API requests and manages Docker objects (1:27:55).
+    2. **REST API:** The communication layer that allows the user or tools to interact with the Docker Daemon (1:28:06).
+    3. **Docker CLI:** The tool (command-line interface) used by the developer to send commands like `docker build` or `docker run` (1:28:19).
+ 
+
+
+
 <img width="777" height="292" alt="image" src="https://github.com/user-attachments/assets/1bea943f-dde6-467b-85d9-8ec05c0b0f01" />
 
 
@@ -8,6 +33,7 @@
 
 
 
+<img width="1162" height="652" alt="image" src="https://github.com/user-attachments/assets/8a962228-aa14-40d8-a6c3-3e4a08e3a466" />
 
 
 
