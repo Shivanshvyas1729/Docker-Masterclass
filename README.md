@@ -74,7 +74,7 @@ docker run hello-world
 docker build -t <local-image-name> .
 
 # Run a container
-# Start a container from a local image and expose a port
+# Start a container from a local image and expose a port->host port is set in docker file (EXPOSE)
 docker run -p <host-port>:<container-port> <local-image-name>
 
 # Tag an image
