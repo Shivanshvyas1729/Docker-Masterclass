@@ -1,5 +1,22 @@
 # YT-MLOPS-Docker-Masterclass
 
+<img width="777" height="292" alt="image" src="https://github.com/user-attachments/assets/1bea943f-dde6-467b-85d9-8ec05c0b0f01" />
+
+
+
+![Uploading image.png…]()
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="1069" height="754" alt="image" src="https://github.com/user-attachments/assets/4fd08636-8afe-4941-8e97-a16037934a59" />
 
 <img width="1343" height="736" alt="image" src="https://github.com/user-attachments/assets/c926e1b1-0684-4ada-8c47-ffed494a5190" />
