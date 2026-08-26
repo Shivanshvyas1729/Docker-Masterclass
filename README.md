@@ -79,7 +79,7 @@ docker run -p <host-port>:<container-port> <local-image-name>
 
 # Tag an image
 # Create a Docker Hub tag for the local image
-docker tag <local-image-name> <dockerhub-username>/<repository-name>:latest
+docker tag <local-image-name> <dockerhub-username>/<repository-name>: insert a tag name like(latest)
 
 # Push an image
 # Upload the tagged image to Docker Hub
