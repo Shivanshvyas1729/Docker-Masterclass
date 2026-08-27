@@ -124,6 +124,62 @@ In Docker Compose, containers connected to the same custom network can talk to e
 3. **Bind Mounts vs Volumes**:
    - **Bind Mounts** (`./backend:/app`): Use during development so changes on your host machine instantly reload inside the container.
    - **Named Volumes** (`db_data:/var/lib/postgresql/data`): Use for databases so data persists even when containers are deleted.
+  
+
+
+
+
+Here is the breakdown of **Disk Space**, **RAM Usage**, and **How to clear it completely whenever you want**:
+
+---
+
+### 1. 💾 Disk Space Usage (Storage)
+
+| Component | Space Taken | Details |
+| :--- | :--- | :--- |
+| **Backend Image** | **~1.5 GB – 2.5 GB** | Contains Python runtime + AI/Audio packages (`tokenizers`, `resampy`, `nltk`, `pydantic`). |
+| **Frontend Image** | **~30 MB – 50 MB** | Extremely lightweight (just static React files served by Nginx). |
+| **Docker Build Cache** | **~2 GB – 4 GB** | Intermediate layers Docker saves to speed up future builds. |
+| **TOTAL DISK SPACE** | **~3.5 GB – 6 GB** | *(Can be cleared anytime)* |
+
+---
+
+### 2. ⚡ RAM Usage (Memory while running)
+
+| Component | RAM Taken | Details |
+| :--- | :--- | :--- |
+| **Backend Container** | **~300 MB – 600 MB** | Uses memory when processing FastAPI routes and audio streams. |
+| **Frontend Container** | **~15 MB – 30 MB** | Uses almost zero memory. |
+| **TOTAL RAM USAGE** | **~400 MB – 700 MB** | *(RAM is freed instantly when you stop Docker)* |
+
+---
+
+### 3. 🧹 YES! You Can Clear It Completely Later
+
+Here are the **3 cleanup commands** you can run anytime:
+
+#### A. Free up RAM immediately (Stop running containers)
+```bash
+docker compose down
+```
+*(This instantly stops the containers and releases all ~500 MB RAM back to your system).*
+
+---
+
+#### B. Free up ~2 to 4 GB of Disk Space (Clear build cache)
+```bash
+docker builder prune -f
+```
+*(Removes temporary build files while keeping your working images).*
+
+---
+
+#### C. Complete Deep Clean (Wipe ALL unused images, containers & caches)
+If you ever want to get **100% of your disk space back**:
+```bash
+docker system prune -a --volumes -f
+```
+*(This deletes all downloaded/built Docker images and caches, freeing up all ~5+ GB of storage).*
 4. **Port Conflicts**:
    - If port `8000` is already in use by another app on your machine, change the **Host** port in `docker-compose.yml`:
      `- '8081:8000'` (maps machine port `8081` to container port `8000`).
