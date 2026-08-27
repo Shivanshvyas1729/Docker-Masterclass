@@ -131,7 +131,56 @@ In enterprise applications, developers never run `docker push` manually from the
 ```text
 Developer ──(git push main)──► GitHub ──(CI/CD Workflow)──► Builds Docker Image ──► Pushes to Docker Hub ──► AWS ECS Deploys Image
 ```
+When you update your code after already pushing an image to Docker Hub, you simply **rebuild and push again**. 
 
+Here is what happens behind the scenes and how to do it:
+
+---
+
+### 1. 🚀 Docker Only Uploads What Changed (Super Fast!)
+
+You **do NOT have to re-upload the whole 2 GB image**!
+
+Docker uses **Layer Caching**. When you update a few code files and run `docker push`:
+- Docker reuses all unchanged layers (Linux OS, Python/Node runtime, installed packages).
+- Docker **only uploads the tiny new layer** containing your updated code files.
+- The push finishes in **2 to 5 seconds**!
+
+---
+
+### 2. The 2 Ways to Push Your Update
+
+#### Option A: Overwrite the existing version (Quickest)
+If you want to update the current version:
+
+```bash
+# 1. Rebuild locally with your code updates
+docker build -t username/voice-backend:v1 ./backend
+
+# 2. Push to Docker Hub (Overwrites v1 with new code)
+docker push username/voice-backend:v1
+```
+
+---
+
+#### Option B: Bump the version number (Recommended Best Practice)
+In real-world software development, you increase the version tag (e.g. `v1` $\rightarrow$ `v1.1` or `v2`). This keeps your previous version safe as a backup if your new code has a bug:
+
+```bash
+# 1. Build new version v1.1
+docker build -t username/voice-backend:v1.1 ./backend
+
+# 2. Push v1.1 to Docker Hub
+docker push username/voice-backend:v1.1
+```
+
+---
+
+### 3. Summary of Steps When Code Changes
+
+1. **Test locally**: `docker compose up --build`
+2. **Rebuild image**: `docker build -t username/repository:tag .`
+3. **Push update**: `docker push username/repository:tag`
 1. Developer pushes code to GitHub: `git push origin main`.
 2. **GitHub Actions** runs automatically, builds the Docker image, and pushes it to Docker Hub.
 3. Your cloud provider (AWS ECS, DigitalOcean, Azure) pulls the new image from Docker Hub and updates your live production site.
